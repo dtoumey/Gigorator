@@ -27,12 +27,16 @@ var app = angular
 app.config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/posts.html',
-        controller: 'PostsCtrl'
+        templateUrl: 'views/shows.html',
+        controller: 'ShowsCtrl'
       })
       .when('/posts/:postId', {
         templateUrl: 'views/showpost.html',
         controller: 'PostViewCtrl'
+      })
+      .when('/shows/:showId', {
+        templateUrl: 'views/showshow.html',
+        controller: 'ShowViewCtrl'
       })
       .when('/register', {
         templateUrl: 'views/register.html',
