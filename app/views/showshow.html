@@ -1,0 +1,50 @@
+<div class="container posts-page">
+
+  <div class="post row">
+    <div class="col-xs-1">
+    </div>
+    <div class="col-md-9 col-xs-11">
+      <div class="info">
+        #:{{ show.number }}
+      </div>
+      <table>
+        <tbody>
+          <tr>
+            <th>
+              Date
+            </th>
+            <th>
+              Venue
+            </th>
+            <th>
+              Other bands
+            </th>
+          </tr>
+          <tr ng-repeat="band in bands" ng-show="$first">
+            <td>
+              {{ show.date | dateFromTimestamp }}
+            </td>
+            <td>
+              {{ show.venue }}
+            </td>
+            <td>
+              {{ band.name }}
+            </td>
+          </tr>
+          <tr ng-repeat="band in bands" ng-show="!$first"> <!-- Skip first since we have it above -->
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              {{ band.name }}
+            </td>
+          </tr>
+        </tbody>
+    </div>
+    <div class="col-md-2">
+        
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,19 @@
+<div class="container posts-page">
+  <div class="post row" ng-repeat="show in shows">
+    <div class="col-xs-1">
+    </div>
+    <div class="col-md-9 col-xs-11">
+
+      <div class="info">
+        <a ng-href="{{ show.url }}">
+          {{ show.venue }}
+          <span>({{ show.date | dateFromTimestamp }})</span>
+        </a>
+      </div>
+      <div>
+        <a ng-href="#/shows/{{ show.$id }}">detail</a>
+        <a ng-click="deleteShow(show)">delete</a>
+      </div>
+    </div>
+  </div>
+</div>
