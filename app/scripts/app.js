@@ -30,6 +30,10 @@ app.config(function ($routeProvider) {
         templateUrl: 'views/shows.html',
         controller: 'ShowsCtrl'
       })
+      .when('/bands', {
+        templateUrl: 'views/bands.html',
+        controller: 'BandsCtrl'
+      })
       .when('/posts/:postId', {
         templateUrl: 'views/showpost.html',
         controller: 'PostViewCtrl'

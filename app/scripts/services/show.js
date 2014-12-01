@@ -16,7 +16,7 @@ app.factory('Show', function ($firebase, FIREBASE_URL) {
 		get: function (showId) {
 			return $firebase(ref.child('shows').child(showId)).$asObject();
 		},
-		getBands: function (showId, limit) {
+		getBands: function (showId) {
 			return $firebase(ref.child('shows').child(showId).child('bands')).$asObject();
 		},
 		delete: function (show) {

@@ -2,11 +2,9 @@
 
   <div class="post row">
     <div class="col-xs-1">
+      #{{ show.number }}
     </div>
     <div class="col-md-9 col-xs-11">
-      <div class="info">
-        #:{{ show.number }}
-      </div>
       <table>
         <tbody>
           <tr>
@@ -20,14 +18,14 @@
               Other bands
             </th>
           </tr>
-          <tr ng-repeat="band in bands" ng-show="$first">
+          <tr>
             <td>
               {{ show.date | dateFromTimestamp }}
             </td>
             <td>
               {{ show.venue }}
             </td>
-            <td>
+            <td ng-repeat="band in bands" ng-show="$first">
               {{ band.name }}
             </td>
           </tr>
