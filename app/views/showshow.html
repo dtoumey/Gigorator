@@ -1,11 +1,14 @@
 <div class="container posts-page">
 
   <div class="post row">
-    <div class="col-xs-1">
-      #{{ show.number }}
+    <div class="col-xs-1" ng-show="status == 'UPCOMING'">
+      UPCOMING
+    </div>
+    <div class="col-xs-1" ng-show="status == 'COMPLETE'">
+      COMPLETE
     </div>
     <div class="col-md-9 col-xs-11">
-      <table>
+      <table class="show-table">
         <tbody>
           <tr>
             <th>
@@ -24,6 +27,7 @@
             </td>
             <td>
               {{ show.venue }}
+              {{ test }}
             </td>
             <td ng-repeat="band in bands" ng-show="$first">
               {{ band.name }}
@@ -39,9 +43,18 @@
             </td>
           </tr>
         </tbody>
-    </div>
-    <div class="col-md-2">
-        
+      </table>
+      <div ng-controller="BandsAutoCompleteCtrl">
+        <input data-ng-model="find" ng-change="search()"></input>
+        <div ng-repeat="band in bands">
+          <div ng-click="set(band.name)">
+            {{ band.name }}
+          </div>
+          <div >
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

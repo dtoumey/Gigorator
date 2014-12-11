@@ -32,7 +32,7 @@ app.config(function ($routeProvider) {
       })
       .when('/bands', {
         templateUrl: 'views/bands.html',
-        controller: 'BandsCtrl'
+        controller: 'BandsAutoCompleteCtrl'
       })
       .when('/posts/:postId', {
         templateUrl: 'views/showpost.html',

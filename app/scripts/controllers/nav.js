@@ -1,17 +1,14 @@
 'use strict'
 
-app.controller('NavCtrl', function ($scope, $location, Post, Auth, $firebase) {
+app.controller('NavCtrl', function ($scope, $location, Auth, $firebase, Show) {
   $scope.user = Auth.user;
-  $scope.post = {url: 'http://', title: ''};
+  $scope.newShow = {venue: '', date: ''};
   $scope.signedIn = Auth.signedIn;
   $scope.logout = Auth.logout;
 
-  $scope.submitPost = function () {
-  	$scope.post.creator = $scope.user.profile.username;
-  	$scope.post.creatorUID = $scope.user.uid;
-  	Post.create($scope.post).then(function (ref) {
-  		$location.path('/posts/' + ref.name());
-  		$scope.post = {url: 'http://', title: ''};
-  	});
+  $scope.submitShow = function () {
+    var id = Show.create($scope.newShow)
+		$location.path('/shows/' + id);
+		$scope.newShow = {venue: '', date: ''};
   };
 });

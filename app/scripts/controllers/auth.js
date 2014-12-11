@@ -2,12 +2,12 @@
 
 app.controller('AuthCtrl', function ($scope, $location, Auth) {
 	if (Auth.signedIn()) {
-		$location.path('/');
+		$location.path('/shows');
 	}
 
 	$scope.login = function () {
 		Auth.login($scope.user).then(function () {
-			$location.path('/');
+			$location.path('/shows');
 		},  function(error) {
 			$scope.error = error.toString();
 		});

@@ -1,25 +1,32 @@
-<div class="container posts-page">
-  <div data-ng-include="'views/partials/limitselect.html'">
-  </div>
-  <div class="post row" ng-repeat="show in shows | limitTo:searchsize.limit">
-    <div class="col-xs-1">
-      #{{ show.number }}
-    </div>
-    <div class="col-md-9 col-xs-11">
-
-      <div class="info">
-        <a ng-href="#/shows/{{ show.$id }}">
-          {{ show.venue }}
-          <span>({{ show.date | dateFromTimestamp }})</span>
-        </a>
-      </div>
-      <div>
-        <span ng-show="show.bands">other acts:</span>
-        <span ng-repeat="band in show.bands">
-          {{ band.name }}{{$last ? '' : ', '}}
-        </span>
-        <!-- <a ng-click="deleteShow(show)">delete</a> -->
-      </div>
-    </div>
+<div class="container posts-page" ng-show="signedIn()">
+  <div class="col-md-9 col-xs-11">
+    <table class="show-table">
+      <tbody>
+        <tr>
+          <th>
+            #
+          </th>
+          <th>
+            Date
+          </th>
+          <th>
+            Venue
+          </th>
+        </tr>
+        <tr ng-repeat="show in shows">
+          <td>
+            {{ shows.length - $index - 1 }}
+          </td>
+          <td>
+            <a ng-href="#/shows/{{ show.$id }}">
+              {{ show.date | dateFromTimestamp }}
+            </a>
+          </td>
+          <td>
+            {{ show.venue }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

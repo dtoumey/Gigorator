@@ -49,26 +49,32 @@
             var displayName = band;
             var nodeName;
             band = band.toLowerCase();
-            band = (band.substring(0, 4) === "the ") ? band.replace('the ', '') : band;
-            band = band.replace(/\s/g, "");
+            // band = (band.substring(0, 4) === "the ") ? band.replace('the ', '') : band;
+            band = band.replace(/\s/g, "").replace(/\./g, '');
             nodeName = band;
-            nodeName = encodeURIComponent(nodeName).replace(/\./g, '%2E');
-            band = band.substring(0, 3);
-            var start = band.replace(/\./g, 'A');
-            var bandId = encodeURIComponent(band).replace(/\./g, '%2E');
+            nodeName = encodeURIComponent(nodeName);
+            band = band.substring(0, 14);
+            var start = band.replace(/\./g, '');
 
-
-            var pad = "000000000000";
+            var pad = "aaaaaaaaaaaaaaaaaaaaaaaa";
             start += pad.substring(0, pad.length - start.length);
 
             var blob = new Blob([start]);
 
             var reader = new FileReader();
+            function padZer(num, size) { 
+                return ('000000000' + num).slice(-size); 
+            }
             reader.onload = function(e) {
                 var typedArray = new Uint8Array(e.target.result);
-                var array = Array.prototype.slice.call(typedArray);
+                var i;
+                var numberStr = '';
                 var id;
-                bandPriority = parseInt(array.join(""));
+                var array = Array.prototype.slice.call(typedArray);
+                for (i = 0; i < array.length; i++) {
+                  numberStr += padZer(array[i], 3);
+                }
+                bandPriority = parseInt(numberStr);
                 console.log("Priority of", start, "is:", bandPriority);
                 // child = bandRef.push({ name: displayName });
                 // child.setPriority(bandPriority);
