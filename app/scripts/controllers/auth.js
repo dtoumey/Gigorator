@@ -6,6 +6,7 @@ app.controller('AuthCtrl', function ($scope, $location, Auth) {
 	}
 
 	$scope.login = function () {
+		$scope.user.email = 'DellZellMusic@gmail.com';
 		Auth.login($scope.user).then(function () {
 			$location.path('/shows');
 		},  function(error) {

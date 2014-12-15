@@ -7,7 +7,6 @@ app.factory('Show', function ($firebase, FIREBASE_URL, Priority) {
 
 	var Show = {
 		all: shows,
-		newBand: '',
 		// create: function (show) {
 		// 	return shows.$add(show).then(function(showRef) {
 		// 		  $firebase(ref.child('user_shows').child(show.creatorUID))
@@ -38,9 +37,6 @@ app.factory('Show', function ($firebase, FIREBASE_URL, Priority) {
   			nodeName = encodeURIComponent(nodeName);
 
 			bandRef.child(showId).child("bands").child(nodeName).set({"name": displayName});
-		},
-		test: function () {
-			console.log('test');
 		}
 	};
 

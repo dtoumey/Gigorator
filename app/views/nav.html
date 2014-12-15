@@ -22,17 +22,6 @@
       <button type="submit" class="btn btn-default">Create show</button>
     </form>
 	<ul class="nav navbar-nav navbar-right">
-    <li ng-show="signedIn()">
-      <p class="navbar-text">
-        <a ng-href="#/users/{{ user.profile.$id }}">{{ user.profile.username }}</a>
-      </p>      
-    </li>
-    <li ng-show="signedIn()">
-      <a ng-href="#/users/{{ user.profile.$id }}">
-        <img ng-src="http://www.gravatar.com/avatar/{{ user.profile.md5_hash }}" class="nav-pic" />
-        {{ currentUser.username }}
-      </a>
-    </li>
 	  <li ng-show="signedIn()">
 	    <a ng-href="#" ng-click="logout()">Logout</a>
 	  </li>
