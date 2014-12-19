@@ -6,4 +6,12 @@ app.filter('dateFromTimestamp', function () {
 
 		return date.toLocaleDateString();
 	}
+}).filter('timeStamp', function () {
+	return function (str) {
+		return new Date(str * 1000);
+	}
+}).filter('prettyDate', function () {
+	return function (date) {
+		return date.toLocaleDateString();
+	}
 });

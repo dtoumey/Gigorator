@@ -2,13 +2,13 @@
 
 app.controller('AuthCtrl', function ($scope, $location, Auth) {
 	if (Auth.signedIn()) {
-		$location.path('/shows');
+		$location.path('/');
 	}
 
 	$scope.login = function () {
 		$scope.user.email = 'DellZellMusic@gmail.com';
 		Auth.login($scope.user).then(function () {
-			$location.path('/shows');
+			$location.path('/');
 		},  function(error) {
 			$scope.error = error.toString();
 		});

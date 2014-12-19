@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('ShowsCtrl', function ($scope, $location, Show, Auth) {
+app.controller('ShowsCtrl', function ($scope, $location, $filter, Show, Auth) {
   if (!Auth.signedIn()) {
     $location.path('/login');
   }
@@ -8,6 +8,11 @@ app.controller('ShowsCtrl', function ($scope, $location, Show, Auth) {
   $scope.shows = Show.all;
   $scope.user = Auth.user;
   $scope.signedIn = Auth.signedIn;
+  
+  $scope.pendingStatus = function(date) {
+    date = new Date($filter('timeStamp')(date));
+    return (date > new Date()) ? 'UPCOMING' : '';
+  }
 
   $scope.deleteShow = function (show) {
   	Show.delete(show);

@@ -13,9 +13,9 @@
             Venue
           </th>
         </tr>
-        <tr ng-repeat="show in shows">
+        <tr ng-repeat="show in shows" ng-class="pendingStatus(show.date)">
           <td>
-            {{ shows.length - $index - 1 }}
+            {{ shows.length - $index }}
           </td>
           <td>
             <a ng-href="#/shows/{{ show.$id }}">
@@ -24,6 +24,9 @@
           </td>
           <td>
             {{ show.venue }}
+          </td>
+          <td class="upcoming" ng-show="pendingStatus(show.date) == 'UPCOMING'">
+            UPCOMING
           </td>
         </tr>
       </tbody>
