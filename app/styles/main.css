@@ -92,12 +92,34 @@ body {
 .show-table td {
   padding:1px 10px 1px 1px;
   border-top:1px solid #ccc;
-  margin:0 auto;
+  /*margin:0 auto;*/
+}
+.show-table th {
+  padding:1px 10px 1px 1px;
+  /*margin:0 auto;*/
 }
 .upcoming {
   font-size: 8px;
   color: red;
   font-weight: bolder;
 }
-.upcomingMessage {
+.upcomingDetail {
+  color:red;
+  font-weight: bolder;
+}
+.completeDetail {
+  color:#66DD00;
+  font-weight: bolder;
+}
+.deleteShow {
+  font-size: 10px;
+  color: red;
+}
+.deleteShowConfirm {
+  font-size: 12px;
+}
+.deleteBand {
+  /*font-size: 10px;*/
+  height: 20px;
+  width: 20px;
 }

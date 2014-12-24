@@ -1,11 +1,13 @@
 <div class="container posts-page">
 
   <div class="post row">
-    <div class="col-xs-1" ng-show="status == 'UPCOMING'">
-      UPCOMING
+    <div class="col-md-9 col-xs-11" ng-show="status == 'UPCOMING'">
+      <span class="upcomingDetail">UPCOMING
+        </span>
     </div>
-    <div class="col-xs-1" ng-show="status == 'COMPLETE'">
-      COMPLETE
+    <div class="col-md-9 col-xs-11" ng-show="status == 'COMPLETE'">
+      <span class="completeDetail">COMPLETE
+        </span>
     </div>
     <div class="col-md-9 col-xs-11">
       <table class="show-table">
@@ -32,6 +34,9 @@
             <td ng-repeat="band in bands" ng-show="$first">
               {{ band.name }}
             </td>
+            <td ng-repeat="band in bands" ng-show="$first">
+              <span class="deleteBand" ng-click="deleteBand(band.name)">&#10006;</span>
+            </td>
           </tr>
           <tr ng-repeat="band in bands" ng-show="!$first"> <!-- Skip first since we have it above -->
             <td>
@@ -41,20 +46,32 @@
             <td>
               {{ band.name }}
             </td>
+            <td>
+              <span class="deleteBand" ng-click="deleteBand(band.name)">&#10006;</span>
+            </td>
           </tr>
         </tbody>
       </table>
-      <div ng-controller="BandsAutoCompleteCtrl">
-        <input data-ng-model="find" ng-change="search()"></input>
-        <div ng-repeat="band in bands">
-          <div ng-click="set(band.name)">
-            {{ band.name }}
-          </div>
-          <div >
+        <div ng-controller="BandsAutoCompleteCtrl">
+      <form class="navbar-form navbar-left" role="search" ng-submit="addBand()" ng-show="signedIn()">
+          <input data-ng-model="find" ng-change="search()"></input>
+        <button style="float:right" type="submit" class="btn btn-default">Add Band</button>
+          <div ng-repeat="band in bands">
+            <div ng-click="set(band.name)">
+              {{ band.name }}
+            </div>
+            <div >
 
+            </div>
           </div>
+      </form>
         </div>
-      </div>
+    </div>
+    <div class="col-md-9 col-xs-11" class="deleteShow">
+      <button ng-show="!deleteShow" ng-click="deleteShow = true" class="btn btn-default">Delete Show</button>
+      <span class="deleteShow" ng-show="deleteShow == true">Are you sure? </span>
+      <a href="" class="deleteShowConfirm" ng-show="deleteShow == true" ng-click="delete()">Yes |</span>
+      <a href="" class="deleteShowConfirm" ng-show="deleteShow == true" ng-click="deleteShow = false"> No</span>
     </div>
   </div>
 

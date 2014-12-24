@@ -1,9 +1,10 @@
 'use strict';
 
-app.controller('BandsAutoCompleteCtrl', function ($scope, Band, Auth, Priority, Show) {
+app.controller('BandsAutoCompleteCtrl', function ($scope, $routeParams, Band, Auth, Priority, Show) {
   $scope.bands = [];
   $scope.user = Auth.user;
   $scope.test = Priority.startPriority;
+  $scope.find = '';
 
   $scope.set = function (name) {
     $scope.find = name;
@@ -24,6 +25,10 @@ app.controller('BandsAutoCompleteCtrl', function ($scope, Band, Auth, Priority, 
   		Priority.endPriority(band, setBands);
   	}
   	Priority.startPriority(band, getEndPriority);
+  };
+  $scope.addBand = function () {
+    Show.addBand($scope.find, $routeParams.showId);
+    $scope.find = '';
   };
 });
 

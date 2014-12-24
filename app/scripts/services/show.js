@@ -1,8 +1,10 @@
 'use strict';
 
 app.factory('Show', function ($firebase, FIREBASE_URL, Priority) {
+	'use strict';
 	var ref = new Firebase(FIREBASE_URL);
 	var showsRef = new Firebase(FIREBASE_URL + '/shows');
+    var bandRef = new Firebase(FIREBASE_URL + '/bands');
 	var shows = $firebase(ref.child('shows')).$asArray();
 
 	var Show = {
@@ -20,8 +22,8 @@ app.factory('Show', function ($firebase, FIREBASE_URL, Priority) {
 		getBands: function (showId) {
 			return $firebase(ref.child('shows').child(showId).child('bands')).$asArray();
 		},
-		delete: function (show) {
-			return shows.$remove(show);
+		delete: function (showId) {
+			showsRef.child(showId).remove();
 		},
 		create: function (newShow) {
 			var date = (new Date(newShow.date).valueOf() / 1000).toString();
@@ -32,11 +34,25 @@ app.factory('Show', function ($firebase, FIREBASE_URL, Priority) {
 			return date;
 		},
 		addBand: function (band, showId) {
-  			var bandPriority = Priority.startPriority(band);
   			var nodeName = band.toLowerCase().replace(/\s/g, "").replace(/\./g, '');
   			nodeName = encodeURIComponent(nodeName);
+  			
+  			function setBandCallback(bandPriority) {
+				showsRef.child(showId).child("bands").child(nodeName).set({"name": band});
+				bandRef.child(nodeName).setWithPriority({ name: band, p: bandPriority }, bandPriority);
+			}
 
-			bandRef.child(showId).child("bands").child(nodeName).set({"name": displayName});
+			Priority.startPriority(band, setBandCallback);
+		},
+		deleteBand: function (band, showId) {
+  			var nodeName = band.toLowerCase().replace(/\s/g, "").replace(/\./g, '');
+  			nodeName = encodeURIComponent(nodeName);
+  			
+  			function setBandCallback(bandPriority) {
+				showsRef.child(showId).child("bands").child(nodeName).remove();
+			}
+
+			Priority.startPriority(band, setBandCallback);
 		}
 	};
 

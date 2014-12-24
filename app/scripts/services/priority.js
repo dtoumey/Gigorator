@@ -41,6 +41,8 @@ app.factory('Priority', function ($firebase, FIREBASE_URL) {
 		// but with the last char code incremented. (Given 'aaa' it will 
 		// return the code string for 'aab')
 		endPriority: function (inputStr, cb) {
+			inputStr = inputStr.replace(/\s/g, "");
+			inputStr = inputStr.replace(/\./g, "");
 			var next = String.fromCharCode(inputStr.charCodeAt(inputStr.length -1) +1);
 			next = inputStr.substring(0, inputStr.length -1) +next;
 			convertToUCCode(next, cb);
