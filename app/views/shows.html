@@ -25,8 +25,14 @@
           <td>
             {{ show.venue }}
           </td>
-          <td class="upcoming" ng-show="pendingStatus(show.date) == 'UPCOMING'">
+          <td class="upcoming" ng-show="!show.pending && pendingStatus(show.date) == 'UPCOMING'">
             UPCOMING
+          </td>
+          <td class="upcoming" ng-show="!show.pending && pendingStatus(show.date) == 'TODAY'">
+            TODAY
+          </td>
+          <td class="pending" ng-show="show.pending && pendingStatus(show.date) !== 'COMPLETE'">
+            PENDING
           </td>
         </tr>
       </tbody>

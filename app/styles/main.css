@@ -107,6 +107,15 @@ body {
   color:red;
   font-weight: bolder;
 }
+.pending {
+  font-size: 8px;
+  color: #8da34c;
+  font-weight: bolder;
+}
+.pendingDetail {
+  color:#8da34c;
+  font-weight: bolder;
+}
 .completeDetail {
   color:#66DD00;
   font-weight: bolder;

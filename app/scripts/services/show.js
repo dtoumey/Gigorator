@@ -19,6 +19,12 @@ app.factory('Show', function ($firebase, FIREBASE_URL, Priority) {
 		get: function (showId) {
 			return $firebase(ref.child('shows').child(showId)).$asObject();
 		},
+		setPending: function (showId) {
+			showsRef.child(showId).child("pending").set(true);
+		},
+		removePending: function (showId) {
+			showsRef.child(showId).child("pending").set(false);
+		},
 		getBands: function (showId) {
 			return $firebase(ref.child('shows').child(showId).child('bands')).$asArray();
 		},
