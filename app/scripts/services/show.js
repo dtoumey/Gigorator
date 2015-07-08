@@ -1,7 +1,6 @@
 'use strict';
 
 app.factory('Show', function ($firebase, FIREBASE_URL, Priority) {
-	'use strict';
 	var ref = new Firebase(FIREBASE_URL);
 	var showsRef = new Firebase(FIREBASE_URL + '/shows');
     var bandRef = new Firebase(FIREBASE_URL + '/bands');
@@ -13,10 +12,10 @@ app.factory('Show', function ($firebase, FIREBASE_URL, Priority) {
 			return $firebase(ref.child('shows').child(showId)).$asObject();
 		},
 		setPending: function (showId) {
-			showsRef.child(showId).child("pending").set(true);
+			showsRef.child(showId).child('pending').set(true);
 		},
 		removePending: function (showId) {
-			showsRef.child(showId).child("pending").set(false);
+			showsRef.child(showId).child('pending').set(false);
 		},
 		getBands: function (showId) {
 			return $firebase(ref.child('shows').child(showId).child('bands')).$asArray();
@@ -33,25 +32,19 @@ app.factory('Show', function ($firebase, FIREBASE_URL, Priority) {
 			return date;
 		},
 		addBand: function (band, showId) {
-  			var nodeName = band.toLowerCase().replace(/\s/g, "").replace(/\./g, '');
-  			nodeName = encodeURIComponent(nodeName);
-  			
-  			function setBandCallback(bandPriority) {
-				showsRef.child(showId).child("bands").child(nodeName).set({"name": band});
+			var nodeName = band.toLowerCase().replace(/\s/g, '').replace(/\./g, '');
+			nodeName = encodeURIComponent(nodeName);
+
+			function setBandCallback(bandPriority) {
+				showsRef.child(showId).child('bands').child(nodeName).set({'name': band});
 				bandRef.child(nodeName).setWithPriority({ name: band, p: bandPriority }, bandPriority);
 			}
 
 			Priority.startPriority(band, setBandCallback);
 		},
 		deleteBand: function (band, showId) {
-  			var nodeName = band.toLowerCase().replace(/\s/g, "").replace(/\./g, '');
-  			nodeName = encodeURIComponent(nodeName);
-  			
-  			function setBandCallback(bandPriority) {
-				showsRef.child(showId).child("bands").child(nodeName).remove();
-			}
-
-			Priority.startPriority(band, setBandCallback);
+			var nodeName = band.toLowerCase().replace(/\s/g, '').replace(/\./g, '');
+			showsRef.child(showId).child('bands').child(nodeName).remove();
 		}
 	};
 
