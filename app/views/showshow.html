@@ -1,20 +1,8 @@
 <div class="container posts-page">
 
   <div class="post row">
-    <div class="col-md-9 col-xs-11" ng-show="!show.pending && pendingStatus() == 'UPCOMING'">
-      <span class="upcomingDetail">UPCOMING
-        </span>
-    </div>
-    <div class="col-md-9 col-xs-11" ng-show="!show.pending && pendingStatus() == 'TODAY'">
-      <span class="upcomingDetail">TODAY
-        </span>
-    </div>
-    <div class="col-md-9 col-xs-11" ng-show="pendingStatus() == 'COMPLETE'">
-      <span class="completeDetail">COMPLETE
-        </span>
-    </div>
-    <div class="col-md-9 col-xs-11" ng-show="show.pending && pendingStatus() !== 'COMPLETE'">
-      <span class="pendingDetail">PENDING
+    <div class="col-md-9 col-xs-11">
+      <span ng-class="status()">{{ status() }}
         </span>
     </div>
     <div class="col-md-9 col-xs-11">
@@ -90,8 +78,8 @@
       <span class="deleteShow" ng-show="deleteShow == true">Are you sure? </span>
       <span ng-show="deleteShow == true"><a ng-click="delete()" href="" class="deleteShowConfirm">Yes </a>-</span>
       <span ng-show="deleteShow == true"><a ng-click="deleteShow = false" href="" class="deleteShowConfirm"> No</a></span>
-      <button class="btn btn-default" ng-click="setPending()" ng-show="!show.pending && pendingStatus() !== 'COMPLETE'">Make Pending</button>
-      <button class="btn btn-default" ng-click="removePending()" ng-show="show.pending && pendingStatus() !== 'COMPLETE'" >Confirm Show</button>
+      <button class="btn btn-default" ng-click="setPending()" ng-show="!show.pending && status() !== 'COMPLETE'">Make Pending</button>
+      <button class="btn btn-default" ng-click="removePending()" ng-show="show.pending && status() !== 'COMPLETE'" >Confirm Show</button>
     </div>
   </div>
   <div class="post row">

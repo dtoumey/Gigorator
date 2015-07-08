@@ -9,13 +9,6 @@ app.factory('Show', function ($firebase, FIREBASE_URL, Priority) {
 
 	var Show = {
 		all: shows,
-		// create: function (show) {
-		// 	return shows.$add(show).then(function(showRef) {
-		// 		  $firebase(ref.child('user_shows').child(show.creatorUID))
-		// 		                    .$push(showRef.name());
-		// 		  return showRef;
-		// 	});
-		// },
 		get: function (showId) {
 			return $firebase(ref.child('shows').child(showId)).$asObject();
 		},

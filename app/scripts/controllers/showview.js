@@ -1,7 +1,6 @@
 'use strict'
 app.controller('ShowViewCtrl', function ($scope, $routeParams, $location, $filter, Show, Auth, Band) {
 	var show = Show.get($routeParams.showId);
-	$scope.status;
 	$scope.bands = Show.getBands($routeParams.showId);
 	$scope.deleteShow = false;
 	$scope.notesEdit = false;
@@ -16,16 +15,19 @@ app.controller('ShowViewCtrl', function ($scope, $routeParams, $location, $filte
 		Show.removePending($routeParams.showId);
 	};
 
-	$scope.pendingStatus = function() {
+	$scope.status = function() {
 		var today = new Date();
 		var date = new Date($routeParams.showId * 1000);
-	    if (date > today) {
-	      return 'UPCOMING';
-	    } else if (date.toDateString() === today.toDateString()) {
-	      return 'TODAY';
-	    } else {
-	      return 'COMPLETE';
-	    }
+
+		if (show.pending && date > today) {
+			return 'PENDING';
+		} else if (date > today) {
+			return 'UPCOMING';
+		} else if (date.toDateString() === today.toDateString()) {
+			return 'TODAY';
+		} else {
+			return 'COMPLETE';
+		}
 	};
 
 	$scope.setPending = function () {
@@ -41,7 +43,7 @@ app.controller('ShowViewCtrl', function ($scope, $routeParams, $location, $filte
 	};
 
 	$scope.deleteBand = function (band) {
-		Show.deleteBand(band, $routeParams.showId)
+		Show.deleteBand(band, $routeParams.showId);
 	};
 
 	$scope.user = Auth.user;

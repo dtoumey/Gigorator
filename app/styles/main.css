@@ -98,25 +98,18 @@ body {
   padding:1px 10px 1px 1px;
   /*margin:0 auto;*/
 }
-.upcoming {
+.showListStatus {
   font-size: 8px;
-  color: red;
-  font-weight: bolder;
 }
-.upcomingDetail {
+.UPCOMING, .TODAY {
   color:red;
   font-weight: bolder;
 }
-.pending {
-  font-size: 8px;
-  color: #8da34c;
-  font-weight: bolder;
-}
-.pendingDetail {
+.PENDING {
   color:#8da34c;
   font-weight: bolder;
 }
-.completeDetail {
+.COMPLETE {
   color:#66DD00;
   font-weight: bolder;
 }

@@ -16,7 +16,7 @@
             Venue
           </th>
         </tr>
-        <tr ng-repeat="show in shows" ng-class="pendingStatus(show.date)">
+        <tr ng-repeat="show in shows">
           <td>
             {{ shows.length - $index }}
           </td>
@@ -31,14 +31,8 @@
           <td>
             {{ show.venue }}
           </td>
-          <td class="upcoming" ng-show="!show.pending && pendingStatus(show.date) == 'UPCOMING'">
-            UPCOMING
-          </td>
-          <td class="upcoming" ng-show="!show.pending && pendingStatus(show.date) == 'TODAY'">
-            TODAY
-          </td>
-          <td class="pending" ng-show="show.pending && pendingStatus(show.date) !== 'COMPLETE'">
-            PENDING
+          <td class="showListStatus" ng-class="status(show.date, show.pending)">
+            {{ status(show.date, show.pending) }}
           </td>
         </tr>
       </tbody>

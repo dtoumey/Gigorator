@@ -9,15 +9,17 @@ app.controller('ShowsCtrl', function ($scope, $location, $filter, Show, Auth) {
   $scope.user = Auth.user;
   $scope.signedIn = Auth.signedIn;
   
-  $scope.pendingStatus = function(date) {
+  $scope.status = function(date, pending) {
     var today = new Date();
     date = new Date(date * 1000);
-    if (date > today) {
+    if (pending && date > today) {
+      return 'PENDING';
+    } else if (date > today) {
       return 'UPCOMING';
     } else if (date.toDateString() === today.toDateString()) {
       return 'TODAY';
     } else {
-      return 'COMPLETE';
+      return ''; // For show list, display nothing for complete
     }
   }
 
