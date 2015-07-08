@@ -29,6 +29,7 @@ app.controller('BandsAutoCompleteCtrl', function ($scope, $routeParams, Band, Au
   $scope.addBand = function () {
     Show.addBand($scope.find, $routeParams.showId);
     $scope.find = '';
+    $scope.bands = [];
   };
 });
 

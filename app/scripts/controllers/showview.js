@@ -1,9 +1,11 @@
 'use strict'
 app.controller('ShowViewCtrl', function ($scope, $routeParams, $location, $filter, Show, Auth, Band) {
-	$scope.show = Show.get($routeParams.showId);
+	var show = Show.get($routeParams.showId);
 	$scope.status;
 	$scope.bands = Show.getBands($routeParams.showId);
 	$scope.deleteShow = false;
+	$scope.notesEdit = false;
+	show.$bindTo($scope, 'show');
 
 	$scope.delete = function () {
 		Show.delete($routeParams.showId);
@@ -28,6 +30,14 @@ app.controller('ShowViewCtrl', function ($scope, $routeParams, $location, $filte
 
 	$scope.setPending = function () {
 		Show.setPending($routeParams.showId);
+	};
+
+	$scope.editNotes = function () {
+		$scope.notesEdit = true;
+	};
+
+	$scope.saveNotes = function () {
+		$scope.notesEdit = false;
 	};
 
 	$scope.deleteBand = function (band) {

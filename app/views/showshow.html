@@ -25,6 +25,9 @@
               Date
             </th>
             <th>
+              Day
+            </th>
+            <th>
               Venue
             </th>
             <th ng-show="bands.length > 0">
@@ -34,6 +37,9 @@
           <tr>
             <td>
               {{ show.date | dateFromTimestamp }}
+            </td>
+            <td>
+              {{ show.date | dayFromTimestamp }}
             </td>
             <td>
               {{ show.venue }}
@@ -52,6 +58,8 @@
             <td>
             </td>
             <td>
+            </td>
+            <td>
               {{ band.name }}
             </td>
             <td>
@@ -60,30 +68,41 @@
           </tr>
         </tbody>
       </table>
-        <div ng-controller="BandsAutoCompleteCtrl">
-      <form class="navbar-form navbar-left" role="search" ng-submit="addBand()" ng-show="signedIn()">
+    </div>
+    <div class="col-md-9 col-xs-11" ng-controller="BandsAutoCompleteCtrl">
+      <form class="form-inline" role="search" ng-submit="addBand()" ng-show="signedIn()">
+        <div class="form-group">
           <input data-ng-model="find" ng-change="search()"></input>
-        <button style="float:right" type="submit" class="btn btn-default">Add Band</button>
-          <div ng-repeat="band in bands">
-            <div ng-click="set(band.name)">
-              {{ band.name }}
-            </div>
-            <div >
-
-            </div>
-          </div>
-      </form>
         </div>
+        <button type="submit" class="btn btn-default">Add Band</button>
+        <div ng-repeat="band in bands">
+          <div ng-click="set(band.name)">
+            {{ band.name }}
+          </div>
+          <div >
+
+          </div>
+        </div>
+      </form>
     </div>
     <div class="col-md-9 col-xs-11" class="deleteShow">
       <button ng-show="!deleteShow" ng-click="deleteShow = true" class="btn btn-default">Delete Show</button>
       <span class="deleteShow" ng-show="deleteShow == true">Are you sure? </span>
-      <span ng-show="deleteShow == true"><a ng-click="delete()" href="" class="deleteShowConfirm">Yes |</a></span>
+      <span ng-show="deleteShow == true"><a ng-click="delete()" href="" class="deleteShowConfirm">Yes </a>-</span>
       <span ng-show="deleteShow == true"><a ng-click="deleteShow = false" href="" class="deleteShowConfirm"> No</a></span>
-    </div>
-    <div class="col-md-9 col-xs-11">
       <button class="btn btn-default" ng-click="setPending()" ng-show="!show.pending && pendingStatus() !== 'COMPLETE'">Make Pending</button>
-      <button class="btn btn-default" ng-click="removePending()" ng-show="show.pending && pendingStatus() !== 'COMPLETE'"" >Confirm Show</button>
+      <button class="btn btn-default" ng-click="removePending()" ng-show="show.pending && pendingStatus() !== 'COMPLETE'" >Confirm Show</button>
+    </div>
+  </div>
+  <div class="post row">
+    <div class="col-md-9 col-xs-11">
+      Notes:
+      <div class="showNotes" ng-show="notesEdit == false && show.notes">{{ show.notes }}</div>
+      <br />
+      <button class="btn btn-default" ng-click="editNotes()" ng-show="notesEdit == false"><span class="glyphicon glyphicon-edit"></span></button>
+      <textarea ng-show="notesEdit == true" class="form-control" rows="3" ng-model="show.notes"></textarea>
+      <br />
+      <button class="btn btn-default" ng-click="saveNotes()" ng-show="notesEdit == true"><span class="glyphicon glyphicon-lock"></button>
     </div>
   </div>
 

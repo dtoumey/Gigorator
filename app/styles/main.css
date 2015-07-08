@@ -132,3 +132,8 @@ body {
   height: 20px;
   width: 20px;
 }
+.showNotes {
+  white-space: pre;
+  padding: 8px;
+  background-color: #eaeaec;
+}

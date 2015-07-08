@@ -10,6 +10,9 @@
             Date
           </th>
           <th>
+            Day
+          </th>
+          <th>
             Venue
           </th>
         </tr>
@@ -21,6 +24,9 @@
             <a ng-href="#/shows/{{ show.$id }}">
               {{ show.date | dateFromTimestamp }}
             </a>
+          </td>
+          <td>
+            {{ show.date | dayFromTimestamp }}
           </td>
           <td>
             {{ show.venue }}
